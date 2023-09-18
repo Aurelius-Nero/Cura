@@ -319,7 +319,7 @@ class CuraConan(ConanFile):
             self.requires("cura_private_data/(latest)@ultimaker/testing")
             self.requires("fdm_materials/(latest)@internal/testing")
         else:
-            self.requires("fdm_materials/(latest)@ultimaker/testing")
+            self.requires("fdm_materials/(latest)@Aurelius-Nero/master")
 
     def build_requirements(self):
         if self.options.devtools:
