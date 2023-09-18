@@ -143,8 +143,8 @@ jobs:
       - name: Create the default Conan profile
         run: conan profile new default --detect --force
 
-      - name: Configure GPG Key Linux (Bash)
-        run: echo -n "$GPG_PRIVATE_KEY" | base64 --decode | gpg --import
+      #- name: Configure GPG Key Linux (Bash)
+      #  run: echo -n "$GPG_PRIVATE_KEY" | base64 --decode | gpg --import
 
       - name: Get Conan configuration
         run: |
