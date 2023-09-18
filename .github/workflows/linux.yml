@@ -95,6 +95,10 @@ jobs:
           cache: 'pip'
           cache-dependency-path: .github/workflows/requirements-conan-package.txt
 
+
+      - name: Create conan package (Bash)
+        run: conan create . $Env:CURA_CONAN_VERSION --build=missing --update
+
       - name: Install Python requirements for runner
         run: pip install -r .github/workflows/requirements-conan-package.txt
 
