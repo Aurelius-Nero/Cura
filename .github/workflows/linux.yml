@@ -88,6 +88,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Checkout materials repository
+        uses: actions/checkout@v3
+        with:
+            repository: Aurelius-Nero/fdm-materials
+            token: ${{ secrets.GITHUB_TOKEN }}
+            path: fdm_materials
+
       - name: Setup Python and pip
         uses: actions/setup-python@v4
         with:
@@ -151,8 +158,11 @@ jobs:
           conan config install https://github.com/Ultimaker/conan-config.git
           conan config install https://github.com/Ultimaker/conan-config.git -a "-b runner/${{ runner.os }}/${{ runner.arch }}"
 
-      - name: Create conan package (Bash)
+      - name: Create Cura conan package (Bash)
         run: conan create . $CURA_CONAN_VERSION --build=missing --update
+
+      - name: Create the fdm_materials package (Bash)
+        run: conan create . fdm_materials/latest@Aurelius-Nero/master --build=missing --update
 
       - name: Use Conan download cache (Bash)
         run: conan config set storage.download_cache="$HOME/.conan/conan_download_cache"
