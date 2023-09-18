@@ -158,11 +158,12 @@ jobs:
           conan config install https://github.com/Ultimaker/conan-config.git
           conan config install https://github.com/Ultimaker/conan-config.git -a "-b runner/${{ runner.os }}/${{ runner.arch }}"
 
+      - name: Create the fdm_materials package (Bash)
+        run: conan create . fdm_materials/latest@Aurelius-Nero/master --build=missing --update
+
       - name: Create Cura conan package (Bash)
         run: conan create . $CURA_CONAN_VERSION --build=missing --update
 
-      - name: Create the fdm_materials package (Bash)
-        run: conan create . fdm_materials/latest@Aurelius-Nero/master --build=missing --update
 
       - name: Use Conan download cache (Bash)
         run: conan config set storage.download_cache="$HOME/.conan/conan_download_cache"
@@ -202,7 +203,7 @@ jobs:
         run: |
           import os
           enterprise = "-Enterprise" if "${{ inputs.enterprise }}" == "true" else ""
-          installer_filename = f"UltiMaker-Cura-{os.getenv('CURA_VERSION_FULL')}{enterprise}-linux-${{ inputs.architecture }}"
+          installer_filename = f"MehtaHeino-Cura-{os.getenv('CURA_VERSION_FULL')}{enterprise}-linux-${{ inputs.architecture }}"
           output_env = os.environ["GITHUB_OUTPUT"]
           content = ""
           if os.path.exists(output_env):
