@@ -153,13 +153,14 @@ jobs:
       #- name: Configure GPG Key Linux (Bash)
       #  run: echo -n "$GPG_PRIVATE_KEY" | base64 --decode | gpg --import
 
+      - name: Create the fdm_materials package (Bash)
+        run: conan create . fdm_materials/latest@Aurelius-Nero/master --build=missing --update
+
+
       - name: Get Conan configuration
         run: |
           conan config install https://github.com/Ultimaker/conan-config.git
           conan config install https://github.com/Ultimaker/conan-config.git -a "-b runner/${{ runner.os }}/${{ runner.arch }}"
-
-      - name: Create the fdm_materials package (Bash)
-        run: conan create . fdm_materials/5.4.0-beta.1@Aurelius-Nero/master --build=missing --update
 
       - name: Create Cura conan package (Bash)
         run: conan create . $CURA_CONAN_VERSION --build=missing --update
