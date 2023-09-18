@@ -95,10 +95,6 @@ jobs:
           cache: 'pip'
           cache-dependency-path: .github/workflows/requirements-conan-package.txt
 
-
-      - name: Create conan package (Bash)
-        run: conan create . $Env:CURA_CONAN_VERSION --build=missing --update
-
       - name: Install Python requirements for runner
         run: pip install -r .github/workflows/requirements-conan-package.txt
 
@@ -154,6 +150,9 @@ jobs:
         run: |
           conan config install https://github.com/Ultimaker/conan-config.git
           conan config install https://github.com/Ultimaker/conan-config.git -a "-b runner/${{ runner.os }}/${{ runner.arch }}"
+
+      - name: Create conan package (Bash)
+        run: conan create . $Env:CURA_CONAN_VERSION --build=missing --update
 
       - name: Use Conan download cache (Bash)
         run: conan config set storage.download_cache="$HOME/.conan/conan_download_cache"
