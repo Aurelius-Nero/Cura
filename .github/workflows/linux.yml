@@ -152,7 +152,7 @@ jobs:
           conan config install https://github.com/Ultimaker/conan-config.git -a "-b runner/${{ runner.os }}/${{ runner.arch }}"
 
       - name: Create conan package (Bash)
-        run: conan create . $Env:CURA_CONAN_VERSION --build=missing --update
+        run: conan create . $CURA_CONAN_VERSION --build=missing --update
 
       - name: Use Conan download cache (Bash)
         run: conan config set storage.download_cache="$HOME/.conan/conan_download_cache"
