@@ -153,8 +153,8 @@ jobs:
       #- name: Configure GPG Key Linux (Bash)
       #  run: echo -n "$GPG_PRIVATE_KEY" | base64 --decode | gpg --import
 
-      - name: Create the fdm_materials package (Bash)
-        run: conan create . fdm_materials/latest@Aurelius-Nero/master --build=missing --update
+      #- name: Create the fdm_materials package (Bash)
+      #  run: conan create . fdm_materials/latest@Aurelius-Nero/master --build=missing --update
 
 
       - name: Get Conan configuration
