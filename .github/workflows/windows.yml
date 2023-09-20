@@ -91,6 +91,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Checkout materials repository
+        uses: actions/checkout@v3
+        with:
+            repository: Aurelius-Nero/fdm_materials
+            token: ${{ secrets.GITHUB_TOKEN }}
+            path: fdm_materials
+
+
+
       - name: Setup Python and pip
         uses: actions/setup-python@v4
         with:
