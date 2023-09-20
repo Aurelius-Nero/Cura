@@ -6,7 +6,7 @@ on:
     inputs:
       cura_conan_version:
         description: 'Cura Conan Version'
-        default: 'cura/latest@Aurelius-Nero/main'
+        default: 'cura/5.5.0-alpha@Aurelius-Nero/main'
         required: true
         type: string
       conan_args:
@@ -42,7 +42,7 @@ on:
     inputs:
       cura_conan_version:
         description: 'Cura Conan Version'
-        default: 'cura/latest@Aurelius-Nero/main'
+        default: 'cura/5.5.0-alpha@Aurelius-Nero/main'
         required: true
         type: string
       conan_args:
