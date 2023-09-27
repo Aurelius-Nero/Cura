@@ -152,7 +152,7 @@ jobs:
         run: conan config set storage.download_cache="$HOME/.conan/conan_download_cache"
 
       - name: Create the Packages (Bash)
-        run: conan install $CURA_CONAN_VERSION ${{ inputs.conan_args }} --build=missing --update -if cura_inst -g VirtualPythonEnv -o cura:enterprise=$ENTERPRISE -o cura:staging=$STAGING --json "cura_inst/conan_install_info.json"
+        run: conan create . $CURA_CONAN_VERSION --build=missing --update && conan install $CURA_CONAN_VERSION ${{ inputs.conan_args }} --build=missing --update -if cura_inst -g VirtualPythonEnv -o cura:enterprise=$ENTERPRISE -o cura:staging=$STAGING --json "cura_inst/conan_install_info.json"
 
       #- name: Upload the Package(s)
       #  if: always()
