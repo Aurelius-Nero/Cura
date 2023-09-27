@@ -161,8 +161,11 @@ jobs:
       - name: Create local materials package
         run:  cd fdm_materials && conan create . fdm_materials/latest@Aurelius-Nero/master --build=missing --update && cd ..
 
+      - name: Create the local conan package
+        run: conan create . $CURA_CONAN_VERSION --build=missing --update
+
       - name: Create the Packages (Bash)
-        run: conan create . $CURA_CONAN_VERSION --build=missing --update && conan install $CURA_CONAN_VERSION ${{ inputs.conan_args }} --build=missing --update -if cura_inst -g VirtualPythonEnv -o cura:enterprise=$ENTERPRISE -o cura:staging=$STAGING --json "cura_inst/conan_install_info.json" --require-override=fdm_materials/latest@Aurelius-Nero/master
+        run: conan install $CURA_CONAN_VERSION ${{ inputs.conan_args }} --build=missing --update -if cura_inst -g VirtualPythonEnv -o cura:enterprise=$ENTERPRISE -o cura:staging=$STAGING --json "cura_inst/conan_install_info.json" --require-override=fdm_materials/latest@Aurelius-Nero/master
 
       #- name: Upload the Package(s)
       #  if: always()
