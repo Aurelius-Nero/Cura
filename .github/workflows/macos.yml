@@ -159,13 +159,13 @@ jobs:
         run: conan config set storage.download_cache="$HOME/.conan/conan_download_cache"
 
       - name: Create local materials package
-        run:  cd fdm_materials && conan create . fdm_materials/latest@mehtaheino/master --build=missing --update && cd ..
+        run:  cd fdm_materials && conan create . fdm_materials-v2/latest@mehtaheino/master --build=missing --update && cd ..
 
       - name: Create the local conan package
         run: conan create . $CURA_CONAN_VERSION --build=missing --update
 
       - name: Create the Packages (Bash)
-        run: conan install $CURA_CONAN_VERSION ${{ inputs.conan_args }} --build=missing --update -if cura_inst -g VirtualPythonEnv -o cura:enterprise=$ENTERPRISE -o cura:staging=$STAGING --json "cura_inst/conan_install_info.json" --require-override=fdm_materials/latest@mehtaheino/master
+        run: conan install $CURA_CONAN_VERSION ${{ inputs.conan_args }} --build=missing --update -if cura_inst -g VirtualPythonEnv -o cura:enterprise=$ENTERPRISE -o cura:staging=$STAGING --json "cura_inst/conan_install_info.json" --require-override=fdm_materials-v2/latest@mehtaheino/master
 
       #- name: Upload the Package(s)
       #  if: always()

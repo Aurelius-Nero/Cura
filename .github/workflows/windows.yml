@@ -137,7 +137,7 @@ jobs:
         run: cd fdm_materials && conan create . fdm_materials/5.4.0-beta.1@Aurelius-Nero/master && cd ..
 
       - name: Create the Packages (Powershell)
-        run: conan install $Env:CURA_CONAN_VERSION ${{ inputs.conan_args }} --build=missing --update -if cura_inst -g VirtualPythonEnv -o cura:enterprise=$Env:ENTERPRISE -o cura:staging=$Env:STAGING --json "cura_inst/conan_install_info.json" --require-override=fdm_materials/5.4.0-beta.1@mehtaheino/master
+        run: conan install $Env:CURA_CONAN_VERSION ${{ inputs.conan_args }} --build=missing --update -if cura_inst -g VirtualPythonEnv -o cura:enterprise=$Env:ENTERPRISE -o cura:staging=$Env:STAGING --json "cura_inst/conan_install_info.json" --require-override=fdm_materials-v2/5.4.0-beta.1@mehtaheino/master
 
       #- name: Upload the Package(s)
       #  if: always()
