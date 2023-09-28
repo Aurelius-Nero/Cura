@@ -61,7 +61,7 @@ pyinstaller:
             src: "windows"
             dst: "share/windows"
         fdm_materials:
-            package: "fdm_materials"
+            package: "fdm_materials-v2"
             src: "res/resources/materials"
             dst: "share/cura/resources/materials"
         tcl:
