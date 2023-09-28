@@ -6,7 +6,7 @@ on:
     inputs:
       cura_conan_version:
         description: 'Cura Conan Version'
-        default: 'cura/5.5.0-alpha@Aurelius-Nero/main'
+        default: 'cura/5.5.0-alpha@mehtaheino/main'
         required: true
         type: string
       conan_args:
@@ -42,7 +42,7 @@ on:
     inputs:
       cura_conan_version:
         description: 'Cura Conan Version'
-        default: 'cura/5.5.0-alpha@Aurelius-Nero/main'
+        default: 'cura/5.5.0-alpha@mehtaheino/main'
         required: true
         type: string
       conan_args:
@@ -94,7 +94,7 @@ jobs:
       - name: Checkout materials repository
         uses: actions/checkout@v3
         with:
-            repository: Aurelius-Nero/fdm_materials
+            repository: mehtaheino/fdm_materials-v2
             token: ${{ secrets.GITHUB_TOKEN }}
             path: fdm_materials
 
@@ -137,7 +137,7 @@ jobs:
         run: cd fdm_materials && conan create . fdm_materials/5.4.0-beta.1@Aurelius-Nero/master && cd ..
 
       - name: Create the Packages (Powershell)
-        run: conan install $Env:CURA_CONAN_VERSION ${{ inputs.conan_args }} --build=missing --update -if cura_inst -g VirtualPythonEnv -o cura:enterprise=$Env:ENTERPRISE -o cura:staging=$Env:STAGING --json "cura_inst/conan_install_info.json" --require-override=fdm_materials/5.4.0-beta.1@Aurelius-Nero/master
+        run: conan install $Env:CURA_CONAN_VERSION ${{ inputs.conan_args }} --build=missing --update -if cura_inst -g VirtualPythonEnv -o cura:enterprise=$Env:ENTERPRISE -o cura:staging=$Env:STAGING --json "cura_inst/conan_install_info.json" --require-override=fdm_materials/5.4.0-beta.1@mehtaheino/master
 
       #- name: Upload the Package(s)
       #  if: always()
@@ -167,7 +167,7 @@ jobs:
         run: |
           import os
           enterprise = "-Enterprise" if "${{ inputs.enterprise }}" == "true" else ""
-          installer_filename = f"UltiMaker-Cura-{os.getenv('CURA_VERSION_FULL')}{enterprise}-win64-${{ inputs.architecture }}"
+          installer_filename = f"MehtaHeino-Cura-{os.getenv('CURA_VERSION_FULL')}{enterprise}-win64-${{ inputs.architecture }}"
           output_env = os.environ["GITHUB_OUTPUT"]
           content = ""
           if os.path.exists(output_env):
